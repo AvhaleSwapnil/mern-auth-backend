@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export default function SignIn() {
+  const navigate = useNavigate();
   const [formData, setformData] = useState({});
   const [error, seterror] = useState(false);
   const [loading, setloading] = useState(false);
   const handleChange = (e) => {
     setformData({ ...formData, [e.target.id]: e.target.value });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -18,18 +20,19 @@ export default function SignIn() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
+      console.log(data);
       setloading(false);
       if (data.success == false) {
         seterror(true);
         return;
       }
+      navigate("/");
     } catch (error) {
       setloading(false);
       seterror(true);
     }
   };
   // sign in code
-
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl text-center font-semibold my-7">Sign In</h1>
@@ -58,7 +61,7 @@ export default function SignIn() {
           <span className="text-blue-500">Sign Up</span>
         </Link>
       </div>
-      <p className="text-red-700 mt-5">{error && "Something went wrong...."}</p>
+      <p className="text-red-700 mt-5">{error && "Wrong Credential...."}</p>
     </div>
   );
 }
