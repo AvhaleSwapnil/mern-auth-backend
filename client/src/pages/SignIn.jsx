@@ -45,17 +45,17 @@ export default function SignIn() {
           type="email"
           placeholder="Email"
           id="email"
-          className="bg-slate-100 p-3 rounded-lg outline-none"
+          className="bg-gray-300 p-3 rounded-lg outline-none"
           onChange={handleChange}
         />
         <input
           type="password"
           placeholder="******"
           id="password"
-          className="bg-slate-100 p-3 rounded-lg outline-none"
+          className="bg-gray-300 p-3 rounded-lg outline-none"
           onChange={handleChange}
         />
-        <button className="bg-slate-700 p-3 rounded-lg text-white uppercase hover:opacity-95 disabled:opacity-80">
+        <button className="bg-gray-700 p-3 rounded-lg text-white uppercase hover:opacity-95 disabled:opacity-80">
           {loading ? "Loading...." : " Sign In"}
         </button>
         <OAuth />
